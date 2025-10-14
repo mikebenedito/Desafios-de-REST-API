@@ -1,0 +1,51 @@
+🚀 Desafio 4 – Dominando os Métodos HTTP (8 pontos)
+
+A ideia é treinar POST, PUT e DELETE usando a API pública de testes:
+👉 https://jsonplaceholder.typicode.com/posts
+
+Essa API não grava de verdade os dados, mas responde como se tivesse salvo, perfeita pra treinar.
+
+🔹 Parte 1 – Criar Postagem (3 pontos)
+
+Método: POST
+Endpoint: https://jsonplaceholder.typicode.com/posts
+
+Tarefas:
+
+ Criar um formulário com campos: título e conteúdo.
+
+ Ao clicar em “Enviar”, enviar os dados via fetch com method: "POST".
+
+ Exibir o retorno da API (mostra o objeto criado com id).
+
+🔹 Parte 2 – Atualizar Postagem (2 pontos)
+
+Método: PUT
+Endpoint: https://jsonplaceholder.typicode.com/posts/1
+
+Tarefas:
+
+ Criar um botão “Atualizar Post 1”.
+
+ Enviar uma requisição PUT com novos dados (por exemplo, título e corpo alterados).
+
+ Exibir o retorno atualizado no console ou na tela.
+
+🔹 Parte 3 – Deletar Postagem (3 pontos)
+
+Método: DELETE
+Endpoint: https://jsonplaceholder.typicode.com/posts/1
+
+Tarefas:
+
+ Criar um botão “Deletar Post 1”.
+
+ Fazer uma requisição DELETE.
+
+ Mostrar na tela “Post deletado com sucesso!” ou mensagem de erro.
+
+🎯 Desafios Extras (Bônus)
+
+ Mostrar um loading enquanto a requisição é feita ( +1 ponto )
+
+ Exibir mensagens de sucesso e erro com cores diferentes (verde/vermelho) ( +1 ponto )

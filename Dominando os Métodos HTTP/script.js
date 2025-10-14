@@ -1,0 +1,95 @@
+// GET
+
+const btnGET = document.getElementById("btnGET");
+const container1 = document.getElementById("get-container");
+
+async function gerarFormulario() {
+  try {
+    const resposta = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const dados = await resposta.json(); // transforma em objeto JS
+    console.log(dados);
+
+    // limpa os containers antes de preencher
+    container1.innerHTML = "";
+
+    // percorre todos os objetos do array
+    for (let i = 0; i < dados.length; i++) {
+        const post = document.createElement("div");
+        post.classList.add("post");
+
+        const h3title = document.createElement("h3");
+        h3title.textContent = dados[i].title;
+
+        const pBody = document.createElement("p");
+        pBody.textContent = dados[i].body;
+
+        post.appendChild(h3title);
+        post.appendChild(pBody);
+        container1.appendChild(post);
+    }
+
+  } catch (erro) {
+    console.error("Erro ao carregar formulário:", erro);
+  }
+}
+
+// evento do botão
+btnGET.addEventListener("click", gerarFormulario);
+
+
+// ---------------------------------  POST  ---------------------------------------
+
+const bntPOST = document.getElementById("enviar");
+const titulo = document.getElementById("titulo");
+const conteudo = document.getElementById("conteudo");
+const postContainer = document.getElementById("post-container");
+
+
+async function enviarPost() {
+  try {
+    const title = titulo.value.trim();
+    const body = conteudo.value.trim();
+
+    const resposta = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({title, body, userID: 1,
+      }),
+    });
+
+    const dados = await resposta.json();
+
+    const post = document.createElement("div");
+    post.classList.add("post");
+
+    const h3title = document.createElement("h3");
+    h3title.textContent = dados.title;
+
+    const pBody = document.createElement("p");
+    pBody.textContent = dados.body;
+
+    const pID = document.createElement("p");
+    pID.textContent = dados.id;
+
+    const pUserId = document.createElement("p");
+    pUserId.textContent = dados.userID;
+
+
+    post.appendChild(h3title);
+    post.appendChild(pBody);
+    post.appendChild(pID);
+    post.appendChild(pUserId);
+    postContainer.appendChild(post); 
+
+    
+    console.log("post criado", dados);
+  } catch (erro){
+    console.error("Erro ao enviar post", erro);
+  }
+}
+
+bntPOST.addEventListener("click", enviarPost);
+
+
