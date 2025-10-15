@@ -92,4 +92,72 @@ async function enviarPost() {
 
 bntPOST.addEventListener("click", enviarPost);
 
+// -------------------- PUT -------------------------
 
+const getContainer = document.getElementById("get-container2");
+
+async function mostrarFormulario() {
+  try {
+    const resposta = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+    const dados = await resposta.json();
+    //console.log(dados);
+
+    const post = document.createElement("div");
+    post.classList.add("post");
+
+    const h3title = document.createElement("h3");
+    h3title.textContent = dados.title;
+
+    const pBody = document.createElement("p");
+    pBody.textContent = dados.body;
+
+    post.appendChild(h3title);
+    post.appendChild(pBody);
+    getContainer.appendChild(post); 
+
+
+    } catch (erro){
+    console.error("Erro ao alterar post", erro);
+  }
+}
+
+mostrarFormulario();
+
+const btnPUT = document.getElementById("btnPUT");
+const titulo2 = document.getElementById("titulo2");
+const conteudo2 = document.getElementById("conteudo2");
+
+async function alterarPost() {
+  try {
+    const title = titulo2.value.trim();
+    const body = conteudo2.value.trim();
+
+    const resposta = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({title, body, userID: 1,
+      }),
+    });
+
+    const dados = await resposta.json();
+
+    const post = getContainer.querySelector(".post");
+    const h3title = post.querySelector("h3");
+    const pBody = post.querySelector("p");
+
+    h3title.textContent = dados.title;
+    pBody.textContent = dados.body;
+
+    
+    console.log("post criado", dados);
+  } catch (erro){
+    console.error("Erro ao enviar post", erro);
+  }
+}
+
+btnPUT.addEventListener("click", alterarPost);
+
+
+// ----------------- DELETE -----------------------------------------------
