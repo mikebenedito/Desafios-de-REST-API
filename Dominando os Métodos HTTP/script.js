@@ -149,6 +149,7 @@ async function alterarPost() {
 
     h3title.textContent = dados.title;
     pBody.textContent = dados.body;
+    
 
     
     console.log("post criado", dados);
@@ -161,3 +162,29 @@ btnPUT.addEventListener("click", alterarPost);
 
 
 // ----------------- DELETE -----------------------------------------------
+
+const bntDel = document.getElementById("btnDELETE");
+const deleteContainer = document.getElementById("delete-container");
+
+async function deletarPost() {
+  try {
+    const resposta = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+      method: "DELETE"
+    });
+
+    if (resposta.ok){
+      console.log("Post deletado com sucesso");
+      const h3title = document.createElement("h3");
+      h3title.textContent = "Post deletado com sucesso!";
+      deleteContainer.appendChild(h3title);
+
+    } else {
+      console.log("Falha ao deletor o post");
+    }
+
+  } catch (erro) {
+    console.log("Erro ao deletar post", erro);
+  }
+}
+
+bntDel.addEventListener("click", deletarPost);
